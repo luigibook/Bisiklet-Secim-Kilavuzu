@@ -1,0 +1,2452 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light" style=""><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bisiklet Seçim Kılavuzu</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.css">
+    <style>
+      :root {
+        --primary-color: #0066cc;
+        --secondary-color: #00d4aa;
+        --accent-color: #ff7043;
+        --dark-bg: #1f2937;
+        --card-bg: #374151;
+        --text-light: #f5f5f5;
+        --border-color: #4b5563;
+        --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        --gradient-2: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+        --gradient-3: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --transition-speed: 0.3s;
+        --border-radius: 12px;
+        --shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      [data-theme="light"] {
+        --dark-bg: #f9fafb;
+        --card-bg: #ffffff;
+        --text-light: #111827;
+        --border-color: #e5e7eb;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          'Inter',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
+        background: var(--dark-bg);
+        color: var(--text-light);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+        transition: background-color var(--transition-speed), color var(--transition-speed);
+      }
+
+      /* Navigation */
+      .navbar {
+        position: static;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(31, 41, 55, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 100;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        text-decoration: none;
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-menu a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color var(--transition-speed) ease;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-menu a:hover {
+        color: var(--secondary-color);
+        background: rgba(0, 212, 170, 0.1);
+      }
+
+      /* Mobile Navigation */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 0.5rem;
+        background: none;
+        border: none;
+        min-height: 48px;
+        min-width: 48px;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: var(--text-light);
+        margin: 3px 0;
+        transition: var(--transition-speed);
+        border-radius: 3px;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+
+      /* Progress Bar */
+      .progress-container {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 1rem;
+        margin-bottom: 0;
+        border: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 999;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: var(--border-color);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+        width: 0%;
+        transition: width 0.5s ease;
+        border-radius: 4px;
+      }
+
+      .progress-text {
+        text-align: center;
+        margin-top: 0.5rem;
+        font-weight: 600;
+        color: var(--secondary-color);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: var(--gradient-1);
+        padding: 6rem 1.5rem 3rem;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: white;
+      }
+
+      .hero p {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .author-info {
+        margin-bottom: 1.5rem;
+      }
+      .author-info p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+      }
+      .author-info p strong {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1rem;
+      }
+
+      .cta-button {
+        background: var(--accent-color);
+        color: white;
+        padding: 0.875rem 1.75rem;
+        border: none;
+        border-radius: 50px;
+        font-size: clamp(1rem, 2vw, 1.1rem);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition-speed) ease;
+        text-decoration: none;
+        display: inline-block;
+        min-height: 48px;
+        min-width: 200px;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+
+      /* Search and Filter */
+      .search-container {
+        margin-bottom: 1.5rem;
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .search-input {
+        flex: 1;
+        min-width: 250px;
+        padding: 0.75rem;
+        border: 2px solid var(--border-color);
+        border-radius: var(--border-radius);
+        background: var(--card-bg);
+        color: var(--text-light);
+        font-size: 1rem;
+        transition: border-color var(--transition-speed);
+      }
+
+      .search-input:focus {
+        outline: none;
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+      }
+
+      .filter-buttons {
+        display: flex;
+        gap: 0.35rem;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        padding: 0.4rem 0.8rem;
+        border: 2px solid var(--border-color);
+        background: var(--card-bg);
+        color: var(--text-light);
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all var(--transition-speed);
+        font-size: 0.8rem;
+        min-height: 44px;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--secondary-color);
+        color: white;
+        border-color: var(--secondary-color);
+      }
+
+      /* Container */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Section Styling */
+      .section {
+        padding: clamp(2rem, 5vw, 4rem) 0;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 3.5rem;
+        color: #00d4aa;
+      }
+
+      /* Decision Tree */
+      .decision-tree {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        margin: 3.5rem 0;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow);
+      }
+
+      .decision-step {
+        background: var(--gradient-2);
+        color: white;
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        opacity: 0.6;
+        transition: all var(--transition-speed);
+        pointer-events: none;
+      }
+
+      .decision-step.active {
+        opacity: 1;
+        pointer-events: all;
+        transform: scale(1.02);
+      }
+
+      .decision-step.completed {
+        opacity: 0.8;
+        background: var(--gradient-3);
+      }
+
+      .decision-step h3 {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        margin-bottom: 1rem;
+      }
+
+      .decision-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .option-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1.25rem;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all var(--transition-speed) ease;
+        border: 2px solid transparent;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        user-select: none;
+        min-width: 48px;
+      }
+
+      .option-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent-color);
+        box-shadow: var(--shadow);
+      }
+
+      .option-card.selected {
+        border-color: var(--secondary-color);
+        background: rgba(0, 212, 170, 0.2);
+        transform: translateY(-3px);
+      }
+
+      .option-card.selected::after {
+        content: '✓';
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 1.5rem;
+        color: var(--secondary-color);
+        font-weight: bold;
+      }
+
+      .option-card h4 {
+        color: #f9fafb;
+        margin-bottom: 0.5rem;
+        font-size: clamp(1rem, 2.5vw, 1.1rem);
+      }
+
+      .option-card p {
+        color: #e5e7eb;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      /* Bike Types Grid */
+      .bike-types {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .bike-card {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        transition:
+          transform var(--transition-speed) ease,
+          box-shadow var(--transition-speed) ease;
+        opacity: 1;
+      }
+
+      .bike-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+      }
+
+      .bike-card.hidden {
+        display: none;
+      }
+
+      .bike-card-header {
+        padding: 2rem;
+        background: var(--gradient-2);
+        color: white;
+        text-align: center;
+      }
+
+      .bike-card-header h3 {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        margin-bottom: 0.5rem;
+      }
+
+      .bike-card-body {
+        padding: 2rem;
+        color: var(--text-light);
+      }
+
+      .bike-features {
+        list-style: none;
+        margin-bottom: 1.5rem;
+      }
+
+      .bike-features li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        color: var(--text-light);
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      .bike-features li:last-child {
+        border-bottom: none;
+      }
+
+      .bike-features li::before {
+        content: '✓';
+        color: var(--secondary-color);
+        font-weight: bold;
+        margin-right: 0.5rem;
+      }
+
+      /* Tables */
+      .modern-table {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        margin: 2rem 0;
+        border: 1px solid var(--border-color);
+        overflow-x: auto;
+      }
+
+      .modern-table table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+      }
+
+      .modern-table th {
+        background: var(--gradient-2);
+        color: white;
+        padding: 1rem;
+        text-align: left;
+        font-weight: 600;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      .modern-table td {
+        padding: 1rem;
+        border-bottom: 1px solid var(--border-color);
+        color: var(--text-light);
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+      }
+
+      .modern-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .modern-table tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      /* Collapsible Sections */
+      .collapsible {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        margin: 1rem 0;
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .collapsible-header {
+        background: var(--gradient-3);
+        color: white;
+        padding: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        transition: all var(--transition-speed);
+        min-height: 60px;
+      }
+
+      .collapsible-header:hover {
+        filter: brightness(1.1);
+      }
+
+      .collapsible-content {
+        padding: 1.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: all var(--transition-speed) ease;
+        color: var(--text-light);
+      }
+
+      .collapsible-content.active {
+        max-height: 2000px;
+        padding: 1.5rem;
+      }
+
+      .collapsible-toggle {
+        font-size: 1.2rem;
+        transition: transform var(--transition-speed) ease;
+      }
+
+      .collapsible.active .collapsible-toggle {
+        transform: rotate(180deg);
+      }
+
+      /* Brand Cards */
+      .brand-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .brand-card {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+        transition: all var(--transition-speed) ease;
+        color: var(--text-light);
+      }
+
+      .brand-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--secondary-color);
+        box-shadow: var(--shadow);
+      }
+
+      .brand-card h3 {
+        color: #00ff99;
+        margin-bottom: 1rem;
+      }
+
+      .brand-specialty {
+        background: var(--gradient-2);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+
+      /* Tips and Highlights */
+      .tip-box {
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+        color: white;
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        margin: 2rem 0;
+        border-left: 5px solid var(--accent-color);
+      }
+
+      .tip-box h3 {
+        margin-bottom: 1rem;
+        font-size: clamp(1.1rem, 3vw, 1.3rem);
+      }
+
+      /* Scroll to Top Button */
+      .scroll-to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: var(--secondary-color);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        font-size: 1.5rem;
+        opacity: 0;
+        transform: translateY(100px);
+        transition: all var(--transition-speed);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .scroll-to-top.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .scroll-to-top:hover {
+        background: var(--primary-color);
+        transform: translateY(-5px);
+      }
+
+      /* Tooltips */
+      .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted var(--secondary-color);
+        cursor: help;
+      }
+
+      .tooltip::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--dark-bg);
+        color: var(--text-light);
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-speed);
+        font-size: 0.9rem;
+        border: 1px solid var(--border-color);
+        z-index: 1000;
+      }
+
+      .tooltip:hover::after {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Loading States */
+      .loading {
+        opacity: 0.6;
+        pointer-events: none;
+        position: relative;
+      }
+
+      .loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border: 4px solid var(--border-color);
+        border-top: 4px solid var(--secondary-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--card-bg);
+        text-align: center;
+        padding: 3rem 0;
+        margin-top: 4rem;
+        border-top: 1px solid var(--border-color);
+        color: var(--text-light);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .decision-options {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        
+        .bike-types {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+
+        .nav-menu {
+          display: none;
+          position: fixed;
+          top: 80px;
+          left: 0;
+          right: 0;
+          background: var(--dark-bg);
+          flex-direction: column;
+          padding: 1.5rem;
+          border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-menu.active {
+          display: flex;
+        }
+
+        .nav-menu li {
+          width: 100%;
+          text-align: center;
+        }
+
+        .nav-menu a {
+          display: block;
+          padding: 0.8rem;
+          border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .container {
+          padding: 0 1rem;
+        }
+
+        .decision-options {
+          grid-template-columns: 1fr;
+        }
+
+        .option-card {
+          min-height: 100px;
+          padding: 1rem;
+        }
+
+        .bike-types {
+          grid-template-columns: 1fr;
+        }
+
+        .brand-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .search-container {
+          flex-direction: column;
+        }
+
+        .search-input {
+          min-width: 100%;
+        }
+
+        .scroll-to-top {
+          bottom: 1rem;
+          right: 1rem;
+          width: 45px;
+          height: 45px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero {
+          padding: 5rem 1rem 2.5rem;
+        }
+
+        .decision-tree {
+          padding: 1rem;
+        }
+
+        .decision-step {
+          padding: 1rem;
+        }
+
+        .collapsible-header {
+          padding: 0.875rem;
+        }
+
+        .collapsible-content.active {
+          padding: 0.875rem;
+        }
+
+        .tip-box {
+          padding: 1.5rem;
+        }
+      }
+
+      /* Smooth Scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Focus Indicators */
+      *:focus {
+        outline: 2px solid var(--secondary-color);
+        outline-offset: 2px;
+      }
+
+      /* Reduced Motion */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* Results Styles */
+      .results-container {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 3rem;
+        margin: 3rem 0;
+        border: 2px solid var(--secondary-color);
+        box-shadow: var(--shadow);
+      }
+      
+      .results-card h2 {
+        color: var(--secondary-color);
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      
+      .bike-recommendation {
+        background: var(--gradient-2);
+        color: white;
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+      
+      .recommended-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      
+      .recommendation-reasoning {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      
+      .selection-summary {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        margin-bottom: 2rem;
+      }
+      
+      .summary-item {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+      
+      .summary-item:last-child {
+        border-bottom: none;
+      }
+      
+      /* Navigation Buttons in Results */
+      .recommendation-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+      .nav-btn {
+        background: var(--secondary-color);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color var(--transition-speed);
+        min-width: 180px;
+      }
+      .nav-btn:hover {
+        background: var(--primary-color);
+      }
+    </style>
+  </head>
+  <body style="" data-theme="light">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#" class="logo">Bisiklet Kılavuzu</a>
+        <button class="hamburger" aria-label="Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-menu">
+          <li><a href="#karar-agaci">Karar Ağacı</a></li>
+          <li><a href="#bisiklet-turleri">Bisiklet Türleri</a></li>
+          <li><a href="#teknik-ozellikler">Teknik Özellikler</a></li>
+          <li><a href="#markalar">Markalar</a></li>
+          <li><a href="#satin-alma">Satın Alma</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="author-info" style="margin-bottom: 1.5rem;">
+          <p style="color: rgba(255, 255, 255, 0.8); font-size: 1rem; margin-bottom: 0.5rem;">
+            <strong>Hazırlayan: Triatlon Antrenörü &amp; Amatör Bisikletçi</strong>
+          </p>
+          <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; margin-bottom: 1rem;">
+            <strong>Ümit Emre Erdoğan</strong>
+          </p>
+        </div>
+        <h1>🚴‍♂️ 7 Adımda Bisiklet Seçim Kılavuzu</h1>
+        <p>
+          25 yıllık iki teker deneyimimle, sizler için kapsamlı bir bisiklet seçim kılavuzu hazırladım. Burada kullanım amacından, kullanım alanlarında bisiklet türlerine, kadro geometrilerinden, teknik malzemelere kadar bir çok temel bilgi ile sizi doğru bir seçim yapmanız için yönlendirecektir.
+        </p>
+        <a href="#karar-agaci" class="cta-button">Bisiklet Seçmeye Başla</a>
+      </div>
+    </section>
+
+    <!-- Decision Tree Section -->
+    <section id="karar-agaci" class="section">
+      <div class="container">
+        <h2 class="section-title">🎯 Bisiklet Seçim Karar Ağacı</h2>
+        
+        <!-- Progress Bar -->
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
+          </div>
+          <div class="progress-text" id="progress-text">Tamamlanan: 0 / 7 adım</div>
+        </div>
+
+        <div class="decision-tree">
+          <div class="decision-step active" data-step="1">
+            <h3>1. Zemin Koşullarını Belirleyin</h3>
+            <p><strong>Soru:</strong> Bisikletinizi hangi tür zeminlerde kullanacaksınız?</p>
+            <div class="decision-options">
+              <div class="option-card" data-value="asfalt" role="button" tabindex="0" aria-label="Sadece Asfalt Seçeneği">
+                <h4>🛣️ Sadece Asfalt</h4>
+                <p><strong>Önerilen:</strong> Yol yarış bisikleti</p>
+                <p><em>Pürüzsüz asfalt için optimize edilmiş</em></p>
+              </div>
+              <div class="option-card" data-value="asfalt-parke" role="button" tabindex="0" aria-label="Asfalt ve Parke Seçeneği">
+                <h4>🏙️ Asfalt + Parke Taşı</h4>
+                <p><strong>Önerilen:</strong> Gravel bisikleti ya da Şehir bisikleti</p>
+                <p><em>Parke taşlı yollarda rahat sürüş</em></p>
+              </div>
+              <div class="option-card" data-value="asfalt-toprak" role="button" tabindex="0" aria-label="Asfalt ve Toprak Seçeneği">
+                <h4>🏞️ Asfalt + Toprak</h4>
+                <p><strong>Önerilen:</strong> Gravel bisikleti</p>
+                <p><em>Karışık zemin için çok yönlü</em></p>
+              </div>
+              <div class="option-card" data-value="asfalt-cakil" role="button" tabindex="0" aria-label="Asfalt ve Çakıl Seçeneği">
+                <h4>🌿 Asfalt + Çakıl</h4>
+                <p><strong>Önerilen:</strong> Gravel bisikleti</p>
+                <p><em>Çakıl yollarda mükemmel performans</em></p>
+              </div>
+              <div class="option-card" data-value="toprak" role="button" tabindex="0" aria-label="Toprak Yollar Seçeneği">
+                <h4>🌲 Toprak Yollar</h4>
+                <p><strong>Önerilen:</strong> Dağ bisikleti (Hardtail)</p>
+                <p><em>Engebeli toprak yollar için</em></p>
+              </div>
+              <div class="option-card" data-value="dag" role="button" tabindex="0" aria-label="Zorlu Dağ Seçeneği">
+                <h4>⛰️ Zorlu Dağ</h4>
+                <p><strong>Önerilen:</strong> Full Suspension MTB</p>
+                <p><em>Ekstrem koşullar için gerekli</em></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="decision-step active" data-step="2">
+            <h3>2. Kullanım Amacınızı Belirleyin</h3>
+            <p><strong>Soru:</strong> Bisikletinizi öncelikli olarak hangi amaç için kullanacaksınız?</p>
+            <div class="decision-options">
+              <div class="option-card" data-value="ulasim" role="button" tabindex="0">
+                <h4>🚗 Günlük Ulaşım</h4>
+                <p><strong>Önerilen:</strong> Şehir bisikleti veya Elektrikli bisiklet</p>
+                <p><em>Rahat ve pratik günlük kullanım</em></p>
+              </div>
+              <div class="option-card" data-value="spor" role="button" tabindex="0">
+                <h4>🏃 Spor ve Fitness</h4>
+                <p><strong>Önerilen:</strong> Yol yarış bisikleti veya Hibrit bisiklet</p>
+                <p><em>Fitness ve egzersiz için ideal</em></p>
+              </div>
+              <div class="option-card" data-value="rekreasyon" role="button" tabindex="0">
+                <h4>🌄 Rekreasyon</h4>
+                <p><strong>Önerilen:</strong> Hibrit bisiklet veya Gravel bisiklet</p>
+                <p><em>Eğlenceli gezintiler için</em></p>
+              </div>
+              <div class="option-card" data-value="yaris" role="button" tabindex="0">
+                <h4>🏆 Yarış ve Performans</h4>
+                <p><strong>Önerilen:</strong> Yol yarış bisikleti veya Dağ bisikleti</p>
+                <p><em>Yarış performansı için</em></p>
+              </div>
+              <div class="option-card" data-value="tur" role="button" tabindex="0">
+                <h4>🎒 Tur ve Keşif</h4>
+                <p><strong>Önerilen:</strong> Gravel bisiklet veya Elektrikli Gravel</p>
+                <p><em>Uzun mesafe turları için</em></p>
+              </div>
+            </div>
+          </div>
+          <div class="decision-step active" data-step="3">
+            <h3>3. Günlük Mesafe Beklentiniz</h3>
+            <p><strong>Soru:</strong> Günlük ortalama ne kadar mesafe katediceksiniz?</p>
+            <div class="decision-options">
+              <div class="option-card" data-value="kisa" role="button" tabindex="0">
+                <h4>📍 Kısa Mesafe</h4>
+                <p><strong>Önerilen:</strong> Şehir bisikleti veya Katlanır bisiklet</p>
+                <p><em>5-15 km arası günlük</em></p>
+              </div>
+              <div class="option-card" data-value="orta" role="button" tabindex="0">
+                <h4>🚴 Orta Mesafe</h4>
+                <p><strong>Önerilen:</strong> Hibrit bisiklet veya Gravel bisiklet</p>
+                <p><em>15-50 km arası günlük</em></p>
+              </div>
+              <div class="option-card" data-value="uzun" role="button" tabindex="0">
+                <h4>🏔️ Uzun Mesafe</h4>
+                <p><strong>Önerilen:</strong> Yol yarış bisikleti veya Elektrikli bisiklet</p>
+                <p><em>50-100 km arası günlük</em></p>
+              </div>
+              <div class="option-card" data-value="cok-uzun" role="button" tabindex="0">
+                <h4>🌍 Çok Uzun Mesafe</h4>
+                <p><strong>Önerilen:</strong> Yol yarış bisikleti veya Elektrikli Gravel</p>
+                <p><em>100+ km günlük</em></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="decision-step active" data-step="4">
+            <h3>4. Bütçe Aralığınız</h3>
+            <p><strong>Soru:</strong> Bisiklet satın almak için ne kadar bütçe ayırdınız?</p>
+            <div class="decision-options">
+              <div class="option-card" data-value="baslangic" role="button" tabindex="0">
+                <h4>💰 Başlangıç Seviyesi</h4>
+                <p><strong>Bütçe:</strong> 20.000 - 80.000 TL</p>
+                <p><em>Giriş seviyesi bisikletler</em></p>
+              </div>
+              <div class="option-card" data-value="orta-seviye" role="button" tabindex="0">
+                <h4>💳 Orta Seviye</h4>
+                <p><strong>Bütçe:</strong> 80.000 - 200.000 TL</p>
+                <p><em>Kalite-fiyat dengesi ideal</em></p>
+              </div>
+              <div class="option-card" data-value="yuksek-seviye" role="button" tabindex="0">
+                <h4>💎 Yüksek Seviye</h4>
+                <p><strong>Bütçe:</strong> 200.000 - 400.000 TL</p>
+                <p><em>Premium özellikler</em></p>
+              </div>
+              <div class="option-card" data-value="premium" role="button" tabindex="0">
+                <h4>🏆 Premium</h4>
+                <p><strong>Bütçe:</strong> 400.000+ TL</p>
+                <p><em>En son teknoloji ve malzemeler</em></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="decision-step active" data-step="5">
+            <h3>5. Fiziksel Özellikleriniz</h3>
+            <p><strong>Soru:</strong> Mevcut fiziksel aktivite seviyeniz nasıl?</p>
+            <div class="decision-options">
+              <div class="option-card" data-value="atletik" role="button" tabindex="0">
+                <h4>🏋️ Atletik</h4>
+                <p><strong>Önerilen:</strong> Yol yarış bisikleti veya Dağ bisikleti</p>
+                <p><em>Güçlü ve aktif fizik</em></p>
+              </div>
+              <div class="option-card" data-value="orta-fizik" role="button" tabindex="0">
+                <h4>💪 Orta Seviye</h4>
+                <p><strong>Önerilen:</strong> Hibrit bisiklet veya Gravel bisiklet</p>
+                <p><em>Düzenli egzersiz yapıyor</em></p>
+              </div>
+              <div class="option-card" data-value="baslangic-fizik" role="button" tabindex="0">
+                <h4>🚶 Başlangıç</h4>
+                <p><strong>Önerilen:</strong> Şehir bisikleti veya Elektrikli bisiklet</p>
+                <p><em>Sedanter yaşam tarzı</em></p>
+              </div>
+              <div class="option-card" data-value="agir-yapi" role="button" tabindex="0">
+                <h4>⚖️ Ağır Yapı</h4>
+                <p><strong>Önerilen:</strong> Güçlendirilmiş Dağ bisikleti</p>
+                <p><em>120+ kg - özel dayanıklılık gerekli</em></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="decision-step active" data-step="6">
+            <h3>6. Yaş ve Deneyim Seviyeniz</h3>
+            <p><strong>Soru:</strong> Bisiklet sürme konusunda ne kadar deneyiminiz var?</p>
+            <div class="decision-options">
+              <div class="option-card" data-value="uzman" role="button" tabindex="0">
+                <h4>🌟 Uzman</h4>
+                <p><strong>Önerilen:</strong> İleri seviye Yarış bisikletleri</p>
+                <p><em>10+ yıl deneyim</em></p>
+              </div>
+              <div class="option-card" data-value="orta-deneyim" role="button" tabindex="0">
+                <h4>🚴 Orta Seviye</h4>
+                <p><strong>Önerilen:</strong> Orta seviye Dağ veya Yol bisikleti</p>
+                <p><em>2-10 yıl deneyim</em></p>
+              </div>
+              <div class="option-card" data-value="yeni-baslayan" role="button" tabindex="0">
+                <h4>🆕 Başlangıç</h4>
+                <p><strong>Önerilen:</strong> Şehir bisikleti veya Hibrit bisiklet</p>
+                <p><em>Yeni başlayan</em></p>
+              </div>
+              <div class="option-card" data-value="yasli" role="button" tabindex="0">
+                <h4>👨‍🦳 Yaşlı Kullanıcı</h4>
+                <p><strong>Önerilen:</strong> Elektrikli bisiklet veya Konforlu şehir bisikleti</p>
+                <p><em>60+ yaş, konfor öncelikli</em></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="decision-step active" data-step="7">
+            <h3>7. Ek Özellik Tercihleri</h3>
+            <p><strong>Soru:</strong> Aşağıdaki özelliklerden hangisi sizin için en önemli?</p>
+            <div class="decision-options">
+              <div class="option-card" data-value="konfor" role="button" tabindex="0">
+                <h4>🛋️ Konfor ve Rahatlık</h4>
+                <p><strong>Önerilen:</strong> Şehir bisikleti veya Konforlu hibrit</p>
+                <p><em>Rahat sürüş pozisyonu</em></p>
+              </div>
+              <div class="option-card" data-value="aerodinamik" role="button" tabindex="0">
+                <h4>🏎️ Aerodinamik</h4>
+                <p><strong>Önerilen:</strong> Aero Yol yarış bisikleti</p>
+                <p><em>Hız ve performans odaklı</em></p>
+              </div>
+              <div class="option-card" data-value="kis" role="button" tabindex="0">
+                <h4>❄️ Kış Kullanımı</h4>
+                <p><strong>Önerilen:</strong> Gravel bisiklet veya Dayanıklı dağ bisikleti</p>
+                <p><em>4 mevsim dayanıklılığı</em></p>
+              </div>
+              <div class="option-card" data-value="elektrikli" role="button" tabindex="0">
+                <h4>⚡ Elektrikli Destek</h4>
+                <p><strong>Önerilen:</strong> Elektrikli bisiklet (tüm türlerde)</p>
+                <p><em>Motor desteği ile kolay sürüş</em></p>
+              </div>
+              <div class="option-card" data-value="tasima" role="button" tabindex="0">
+                <h4>📦 Taşıma Kapasitesi</h4>
+                <p><strong>Önerilen:</strong> Kargo bisikleti veya Gravel bisiklet</p>
+                <p><em>Bagaj ve yük taşıma</em></p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Results Section -->
+        <div class="results-container" id="results-container" style="display: none;">
+          <div class="results-card">
+            <h2>🎯 Size Önerilen Bisiklet</h2>
+            <div class="recommended-bike" id="recommended-bike">
+              <!-- Results will be populated here -->
+            </div>
+            <div class="selection-summary">
+              <h3>📋 Seçimleriniz</h3>
+              <div id="selection-summary"></div>
+            </div>
+            <div class="recommendation-actions">
+              <button class="nav-btn" onclick="showBikeTypes()">
+                Bisiklet Türlerini İncele
+              </button>
+              <button class="nav-btn" onclick="restartDecisionTree()">
+                Baştan Başla
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bike Types Section -->
+    <section id="bisiklet-turleri" class="section">
+      <div class="container">
+        <h2 class="section-title">🚲 Bisiklet Türleri ve Kullanım Alanları</h2>
+        
+        <!-- Search and Filter -->
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Bisiklet türü ara..." id="bike-search" __gchrome_uniqueid="2">
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Tümü</button>
+            <button class="filter-btn" data-filter="electric">Elektrikli</button>
+            <button class="filter-btn" data-filter="mountain">Dağ</button>
+            <button class="filter-btn" data-filter="road">Yol</button>
+            <button class="filter-btn" data-filter="city">Şehir</button>
+            <button class="filter-btn" data-filter="hybrid">Hibrit</button>
+          </div>
+        </div>
+
+        <div class="collapsible" data-category="mountain">
+          <div class="collapsible-header" role="button" aria-expanded="true" tabindex="0">
+            <h3>⛰️ Dağ Bisikleti (MTB) - Engebeli araziler için</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content active">
+            <ul class="bike-features">
+              <li>Geniş ve dikenli lastikler (2.1" - 2.5")</li>
+              <li>Güçlü disk fren sistemi</li>
+              <li>Sağlam çerçeve yapısı</li>
+              <li>21-30 arası vites</li>
+              <li>Hardtail veya Full Suspension</li>
+            </ul>
+            <div class="tip-box">
+              <h4>💡 Kullanım Alanları</h4>
+              <p>Dağ parkurları, engebeli arazi, cross-country yarışları, downhill sürüşleri</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible" data-category="road">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🏁 Yol Yarış Bisikleti - Hız ve performans odaklı</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <ul class="bike-features">
+              <li>İnce ve pürüzsüz lastikler (23-28mm)</li>
+              <li>Hafif karbon/alüminyum çerçeve</li>
+              <li>Aerodinamik tasarım</li>
+              <li>16-22 arası vites</li>
+              <li>Agresif sürüş pozisyonu</li>
+            </ul>
+            <div class="tip-box">
+              <h4>💡 Kullanım Alanları</h4>
+              <p>Asfalt yol yarışları, uzun mesafe turları, triathlon, grup sürüşleri</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible" data-category="gravel">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🌿 Gravel Bisikleti - Çok yönlü macera bisikleti</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <ul class="bike-features">
+              <li>Orta genişlik lastikler (32-45mm)</li>
+              <li>Çok yönlü çerçeve tasarımı</li>
+              <li>Disk fren sistemi</li>
+              <li>18-24 arası vites</li>
+              <li>Bagaj taşıma imkanı</li>
+            </ul>
+            <div class="tip-box">
+              <h4>💡 Kullanım Alanları</h4>
+              <p>Çakıl yollar, karışık zemin sürüşleri, bikepacking turları</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible" data-category="city">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🏙️ Şehir Bisikleti - Günlük ulaşım için</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <ul class="bike-features">
+              <li>Orta genişlik lastikler (32-40mm)</li>
+              <li>Konfor odaklı tasarım</li>
+              <li>Zincir koruması</li>
+              <li>3-8 arası vites (hub sistemi)</li>
+              <li>Entegre aksesuar desteği</li>
+            </ul>
+            <div class="tip-box">
+              <h4>💡 Kullanım Alanları</h4>
+              <p>Günlük işe gidip gelme, kısa mesafe ulaşım, alışveriş</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible" data-category="folding">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>📦 Katlanır Bisiklet - Taşınabilir çözüm</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <ul class="bike-features">
+              <li>Küçük tekerlekler (16-20 inç)</li>
+              <li>Katlanabilir çerçeve sistemi</li>
+              <li>Kompakt tasarım</li>
+              <li>3-7 arası vites</li>
+              <li>Hafif malzemeler</li>
+            </ul>
+            <div class="tip-box">
+              <h4>💡 Kullanım Alanları</h4>
+              <p>Toplu taşıma entegrasyonu, sınırlı depolama alanı</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible" data-category="electric">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>⚡ Elektrikli Bisiklet - Motor destekli sürüş</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <ul class="bike-features">
+              <li>Elektrik motor desteği</li>
+              <li>Şarj edilebilir batarya</li>
+              <li>Güçlü fren sistemi</li>
+              <li>Dijital kontrol paneli</li>
+              <li>Ağır yapı (18-25kg)</li>
+            </ul>
+            <div class="tip-box">
+              <h4>💡 Kullanım Alanları</h4>
+              <p>Uzun mesafe işe gidip gelme, yokuşlu bölgeler, yaşlı kullanıcılar</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="collapsible" data-category="electric">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>⚡🌿 Elektrikli Gravel Bisikleti - Çok yönlü elektrikli macera</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <ul class="bike-features">
+              <li>Elektrik motor desteği ile gravel geometrisi</li>
+              <li>Orta-geniş lastikler (35-50mm)</li>
+              <li>Uzun menzil batarya sistemi</li>
+              <li>Güçlü disk fren sistemi</li>
+              <li>Bagaj ve aksesuar taşıma imkanı</li>
+            </ul>
+            <div class="tip-box">
+              <h4>💡 Kullanım Alanları</h4>
+              <p>Çok yönlü spor, tur ve işe gidip gelme. Uzun mesafe karışık zemin turları, şehir içi ve dışı karma sürüş, bikepacking ve keşif turları</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="collapsible" data-category="hybrid">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🚴‍♀️ Hibrit Bisiklet - Çok amaçlı kullanım</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <ul class="bike-features">
+              <li>Yol ve dağ bisikleti karışımı</li>
+              <li>Orta genişlik lastikler (28-35mm)</li>
+              <li>Konforlu geometri</li>
+              <li>Çok amaçlı kullanım</li>
+              <li>Vites sayısı: 21-24 arası</li>
+            </ul>
+            <div class="tip-box">
+              <h4>💡 Kullanım Alanları</h4>
+              <p>Karma zemin sürüşleri, fitness ve rekreasyon, günlük ulaşım, hafta sonu gezileri, başlangıç seviyesi kullanıcılar</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Specifications Section -->
+    <section id="teknik-ozellikler" class="section">
+      <div class="container">
+        <h2 class="section-title">🔧 Teknik Özellikler ve Malzemeler</h2>
+        
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🏗️ Kadro Malzemeleri</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="modern-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Malzeme</th>
+                    <th>Avantajlar</th>
+                    <th>Dezavantajlar</th>
+                    <th>Kullanım Alanı</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Çelik (Steel)</strong></td>
+                    <td>Dayanıklı, onarılabilir, konforlu</td>
+                    <td>Ağır, pas riski</td>
+                    <td>Şehir, tur bisikletleri</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Alüminyum</strong></td>
+                    <td>Hafif, pas yapmaz, uygun fiyat</td>
+                    <td>Sert sürüş, yorulma kırığı</td>
+                    <td>Dağ, şehir bisikletleri</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Karbon Fiber</strong></td>
+                    <td>Çok hafif, titreşim emici</td>
+                    <td>Pahalı, kırılgan</td>
+                    <td>Yarış, performans bisikletleri</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Titanyum</strong></td>
+                    <td>Çok hafif, dayanıklı, konforlu</td>
+                    <td>Çok pahalı</td>
+                    <td>Üst segment bisikletler</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>⚙️ Vites Sistemleri</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <ul class="bike-features">
+              <li>Shimano, SRAM ve Campagnolo gibi popüler markalar</li>
+              <li>Diğer sistemler: Di2 elektronik vites, mekanik vites</li>
+              <li>Vites sayısı: 7-30 arası</li>
+              <li>Seçim kullanım amacına göre yapılmalı</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🛑 Fren Sistemleri</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <ul class="bike-features">
+              <li>Disk frenler: Hidrolik ve mekanik seçenekler</li>
+              <li>Jant frenleri: Daha hafif ama performans sınırlı</li>
+              <li>Dağ bisikletlerinde genellikle disk fren tercih edilir</li>
+              <li>Yol bisikletlerinde jant fren veya disk fren olabilir</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🛞 Lastikler ve Jantlar</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <ul class="bike-features">
+              <li>Lastik genişliği kullanım amacına göre değişir</li>
+              <li>Dağ bisikletlerinde geniş ve dişli lastikler</li>
+              <li>Yol bisikletlerinde ince ve pürüzsüz lastikler</li>
+              <li>Gravel ve hibritlerde orta genişlikte lastikler</li>
+              <li>Jant malzemesi: Alüminyum veya karbon</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🚲 Kadro Tipleri</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <ul class="bike-features">
+              <li>Hardtail: Ön amortisörlü, arka sert</li>
+              <li>Full Suspension: Ön ve arka amortisörlü</li>
+              <li>Yol bisikleti: Hafif ve aerodinamik</li>
+              <li>Hibrit: Yol ve arazi dengesi</li>
+              <li>Katlanır: Taşınabilirlik için tasarlanmış</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gender and Anatomic Features Section -->
+    <section id="cinsiyet-anatomik" class="section">
+      <div class="container">
+        <h2 class="section-title">👫 Cinsiyet ve Anatomik Özellikler</h2>
+        
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>📏 Kadın ve Erkek Bisikleti Farkları</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="modern-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Özellik</th>
+                    <th>Kadın Bisikleti</th>
+                    <th>Erkek Bisikleti</th>
+                    <th>Unisex</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Üst Kadro</strong></td>
+                    <td>Daha kısa</td>
+                    <td>Daha uzun</td>
+                    <td>Orta ölçü</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sele Genişliği</strong></td>
+                    <td>Geniş (145-155mm)</td>
+                    <td>Dar (130-140mm)</td>
+                    <td>Orta (140-150mm)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Gidon Genişliği</strong></td>
+                    <td>Dar (380-400mm)</td>
+                    <td>Geniş (420-440mm)</td>
+                    <td>Orta (400-420mm)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Fren Kolu</strong></td>
+                    <td>Daha yakın ayar</td>
+                    <td>Standart ayar</td>
+                    <td>Ayarlanabilir</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section id="markalar" class="section">
+      <div class="container">
+        <h2 class="section-title">🏆 Popüler Bisiklet Markaları</h2>
+        
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🏆 Specialized - Premium Marka</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Premium</span>
+              <p><strong>Güçlü Alanlar:</strong> Dağ bisikletleri, yol yarış bisikletleri, elektrikli bisikletler</p>
+              <p><strong>Öne Çıkan:</strong> İnovatif süspansiyon teknolojileri, aerodinamik tasarım</p>
+              <p><strong>Popüler Modeller:</strong> Stumpjumper (MTB), Tarmac (Road), Turbo (E-bike)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🚲 Trek - Geniş Ürün Yelpazesi</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Çeşitli</span>
+              <p><strong>Güçlü Alanlar:</strong> Dağ bisikletleri, yol bisikletleri, hibritler</p>
+              <p><strong>Öne Çıkan:</strong> Dayanıklılık, teknoloji entegrasyonu</p>
+              <p><strong>Popüler Modeller:</strong> Marlin (MTB), Domane (Road), Verve (Hibrit)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>⚡ Giant - Elektrikli Bisiklet Uzmanı</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Elektrikli</span>
+              <p><strong>Güçlü Alanlar:</strong> Elektrikli bisikletler, dağ ve şehir bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Yenilikçi motor teknolojileri</p>
+              <p><strong>Popüler Modeller:</strong> Quick E+ (Şehir), Trance E+ (MTB)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🏅 Cannondale - Performans ve Yenilik</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Performans</span>
+              <p><strong>Güçlü Alanlar:</strong> Yol ve dağ bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Yenilikçi çerçeve tasarımları</p>
+              <p><strong>Popüler Modeller:</strong> Synapse (Road), Scalpel (MTB)</p>
+            </div>
+          </div>
+        </div>
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🏞️ Canyon - Direkt Satış</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Direkt Satış</span>
+              <p><strong>Güçlü Alanlar:</strong> Yol yarış bisikletleri, dağ bisikletleri, gravel bisikletler</p>
+              <p><strong>Öne Çıkan:</strong> Direkt satış modeli, yüksek teknoloji</p>
+              <p><strong>Popüler Modeller:</strong> Neuron (MTB), Aeroad (Road), Grail (Gravel)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🇩🇪 Cube - Alman Mühendisliği</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Alman</span>
+              <p><strong>Güçlü Alanlar:</strong> Dağ bisikletleri, elektrikli bisikletler, şehir bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Alman mühendisliği, dayanıklılık, modern tasarım</p>
+              <p><strong>Popüler Modeller:</strong> Stereo (MTB), Kathmandu (E-bike), Town (City)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🏆 BMC - İsviçre Kalitesi</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Performans</span>
+              <p><strong>Güçlü Alanlar:</strong> Yol yarış bisikletleri, dağ bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Yenilikçi kadro tasarımları, hafif malzemeler</p>
+              <p><strong>Popüler Modeller:</strong> Teammachine (Road), Fourstroke (MTB)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🏁 Scott - Yenilikçi Tasarım</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Çeşitli</span>
+              <p><strong>Güçlü Alanlar:</strong> Dağ bisikletleri, yol bisikletleri, elektrikli modeller</p>
+              <p><strong>Öne Çıkan:</strong> Hafif kadro, aerodinamik yapı</p>
+              <p><strong>Popüler Modeller:</strong> Spark (MTB), Addict (Road)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🚴 Merida - Uygun Fiyatlı Kalite</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Fiyat/Performans</span>
+              <p><strong>Güçlü Alanlar:</strong> Dağ bisikletleri, yol bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Dayanıklı kadro, geniş ürün yelpazesi</p>
+              <p><strong>Popüler Modeller:</strong> Big Nine (MTB), Scultura (Road)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🇮🇹 Pinarello - İtalyan Zarafeti</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Yol Yarışı</span>
+              <p><strong>Güçlü Alanlar:</strong> Profesyonel yol yarış bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Aerodinamik ve hafif kadrolar</p>
+              <p><strong>Popüler Modeller:</strong> Dogma F12, Prince</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🚲 Brompton - Katlanabilir Uzmanı</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Katlanır</span>
+              <p><strong>Güçlü Alanlar:</strong> Katlanabilir şehir bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Kompakt tasarım, taşınabilirlik</p>
+              <p><strong>Popüler Modeller:</strong> Brompton M6L, Brompton S2L</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🌟 Bisan - Yerli Marka</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Şehir &amp; Dağ</span>
+              <p><strong>Güçlü Alanlar:</strong> Uygun fiyatlı şehir ve dağ bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Dayanıklı ve ekonomik modeller</p>
+              <p><strong>Popüler Modeller:</strong> Bisan Cross, Bisan City</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🇹🇷 Salcano - Türkiye'nin Gücü</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Çeşitli</span>
+              <p><strong>Güçlü Alanlar:</strong> Dağ, şehir ve yol bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Geniş ürün yelpazesi, uygun fiyat</p>
+              <p><strong>Popüler Modeller:</strong> Salcano NG650, Salcano City</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🚴 Carraro - Uygun ve Dayanıklı</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Şehir &amp; Dağ</span>
+              <p><strong>Güçlü Alanlar:</strong> Ekonomik şehir ve dağ bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Dayanıklılık ve fiyat dengesi</p>
+              <p><strong>Popüler Modeller:</strong> Carraro City, Carraro MTB</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🇫🇷 Lapierre - Fransız Kalitesi</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Performans</span>
+              <p><strong>Güçlü Alanlar:</strong> Dağ ve yol bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Hafif ve dayanıklı kadrolar</p>
+              <p><strong>Popüler Modeller:</strong> Zesty (MTB), Aircode (Road)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🇪🇸 Orbea - İspanyol Tasarımı</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Yol ve Dağ</span>
+              <p><strong>Güçlü Alanlar:</strong> Yol yarış ve dağ bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Yenilikçi kadro teknolojileri</p>
+              <p><strong>Popüler Modeller:</strong> Orca (Road), Rallon (MTB)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🇮🇹 Bianchi - İtalyan Efsanesi</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Yol Yarışı</span>
+              <p><strong>Güçlü Alanlar:</strong> Yol yarış bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Klasik tasarım ve performans</p>
+              <p><strong>Popüler Modeller:</strong> Infinito, Oltre</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🌐 Dahon - Katlanabilir Lideri</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Katlanır</span>
+              <p><strong>Güçlü Alanlar:</strong> Katlanabilir bisikletler</p>
+              <p><strong>Öne Çıkan:</strong> Hafif ve kompakt tasarım</p>
+              <p><strong>Popüler Modeller:</strong> Dahon Mariner, Dahon Speed</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🏬 Decathlon - Geniş Ürün Yelpazesi</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <div class="brand-card">
+              <span class="brand-specialty">Ekonomik</span>
+              <p><strong>Güçlü Alanlar:</strong> Şehir, dağ ve yol bisikletleri</p>
+              <p><strong>Öne Çıkan:</strong> Uygun fiyat, geniş erişim</p>
+              <p><strong>Popüler Modeller:</strong> Rockrider (MTB), Triban (Road)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Purchase Tips Section -->
+    <section id="satin-alma" class="section">
+      <div class="container">
+        <h2 class="section-title">🛒 Satın Alma İpuçları</h2>
+        
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>📏 Bisiklet Ölçüsü Seçimi</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <p>Doğru bisiklet ölçüsü seçmek, konfor ve performans için kritik öneme sahiptir. Aşağıdaki tabloya göre ölçünüzü belirleyin:</p>
+            <div class="tip-box">
+              <h3>⚠️ Önemli Uyarı</h3>
+              <p>Kadro boyutları markaya, bisiklet geometrisine ve cinsiyete göre önemli farklılıklar gösterebilir. 
+              Aşağıdaki tablo genel bir rehberdir. <strong>Bisiklet almadan önce mutlaka test sürüşü yapın</strong> 
+              ve uzman desteği alın. Doğru boyut seçimi konfor ve performans için kritik öneme sahiptir.</p>
+            </div>
+            <div class="modern-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Boy (cm)</th>
+                    <th>Kadro Ölçüsü (cm)</th>
+                    <th>Kadro Ölçüsü (inç)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>150-160</strong></td>
+                    <td>47-50</td>
+                    <td>XS</td>
+                  </tr>
+                  <tr>
+                    <td><strong>160-170</strong></td>
+                    <td>50-53</td>
+                    <td>S</td>
+                  </tr>
+                  <tr>
+                    <td><strong>170-180</strong></td>
+                    <td>53-56</td>
+                    <td>M</td>
+                  </tr>
+                  <tr>
+                    <td><strong>180-190</strong></td>
+                    <td>56-59</td>
+                    <td>L</td>
+                  </tr>
+                  <tr>
+                    <td><strong>190+</strong></td>
+                    <td>59+</td>
+                    <td>XL</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>✅ Test Sürüşü Kontrol Listesi</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <ul class="bike-features">
+              <li>Frenlerin düzgün çalıştığını kontrol edin</li>
+              <li>Vites geçişlerinin sorunsuz olduğundan emin olun</li>
+              <li>Sele ve gidon yüksekliği rahat mı?</li>
+              <li>Bisikletin ağırlığını hissedin</li>
+              <li>Sürüş pozisyonu ve konforu değerlendirin</li>
+              <li>Amortisörlerin performansını test edin (varsa)</li>
+              <li>Lastiklerin durumu ve basıncını kontrol edin</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="collapsible">
+          <div class="collapsible-header" role="button" aria-expanded="false" tabindex="0">
+            <h3>🛠️ Bakım ve Servis Önerileri</h3>
+            <span class="collapsible-toggle">▼</span>
+          </div>
+          <div class="collapsible-content">
+            <ul class="bike-features">
+              <li>Periyodik olarak zincir temizliği ve yağlama yapın</li>
+              <li>Lastik basıncını düzenli kontrol edin</li>
+              <li>Fren ve vites ayarlarını zamanında yaptırın</li>
+              <li>Amortisör bakımı için yetkili servise başvurun</li>
+              <li>Bisikletinizi temiz ve kuru tutun</li>
+              <li>Uzun süre kullanılmayacaksa bataryayı şarjda tutun (elektrikli bisikletler için)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top" aria-label="Yukarı Çık">↑</button>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <h3>🚴‍♂️ İyi Sürüşler Dilerim!</h3>
+        <p>
+          Bu rehber 25 yıllık bisiklet deneyimi ile hazırlanmıştır. Doğru bisiklet seçimi, sizin kullanım şeklinize en
+          uygun bisikleti bulma sürecidir.
+        </p>
+        <p>
+          <strong>Unutmayın:</strong> En pahalı bisiklet her zaman en iyi seçenek değildir; sizin ihtiyacınıza en uygun
+          bisiklet, en iyi bisiklettir.
+        </p>
+        <p>Sorularınız için: <a href="/cdn-cgi/l/email-protection#13667e7a67767e61767661777c74727d53747e727a7f3d707c7e" style="color: var(--secondary-color);"><span class="__cf_email__" data-cfemail="d7a2babea3b2baa5b2b2a5b3b8b0b6b997b0bab6bebbf9b4b8ba">[email&#160;protected]</span></a></p>
+      </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+      // State management
+      const appState = {
+        currentStep: 1,
+        totalSteps: 7,
+        selections: {},
+        theme: localStorage.getItem('theme') || 'dark'
+      };
+
+      // Initialize app
+      document.addEventListener('DOMContentLoaded', function () {
+        resetProgressBar();
+        clearAllSelections();
+        initializeDecisionTree();
+        initializeCollapsibles();
+        initializeSmoothScrolling();
+        initializeSearch();
+        initializeScrollToTop();
+        initializeMobileMenu();
+      });
+
+      // Reset functions
+      function resetProgressBar() {
+        const progressFill = document.getElementById('progress-fill');
+        const progressText = document.getElementById('progress-text');
+        
+        progressFill.style.width = '0%';
+        progressText.textContent = 'Tamamlanan: 0 / 7 adım';
+      }
+
+      function clearAllSelections() {
+        // Clear app state
+        appState.selections = {};
+        
+        // Remove all selected classes
+        document.querySelectorAll('.option-card.selected').forEach(card => {
+          card.classList.remove('selected');
+        });
+        
+        // Hide results
+        const resultsContainer = document.getElementById('results-container');
+        if (resultsContainer) {
+          resultsContainer.style.display = 'none';
+        }
+      }
+
+      // Decision tree management
+      function initializeDecisionTree() {
+        const steps = document.querySelectorAll('.decision-step');
+        
+        // Initialize first step
+        updateStepDisplay();
+        
+        // Handle option selection
+        document.addEventListener('click', function(e) {
+          if (e.target.closest('.option-card')) {
+            handleOptionSelection(e.target.closest('.option-card'));
+          }
+        });
+        
+        // Handle keyboard navigation for options
+        document.addEventListener('keydown', function(e) {
+          if (e.target.classList.contains('option-card') && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            handleOptionSelection(e.target);
+          }
+        });
+      }
+
+      function handleOptionSelection(card) {
+        const step = card.closest('.decision-step');
+        const stepNumber = parseInt(step.dataset.step);
+        const value = card.dataset.value;
+        
+        // Check if clicking the same option (deselect)
+        if (card.classList.contains('selected')) {
+          card.classList.remove('selected');
+          delete appState.selections[stepNumber];
+        } else {
+          // Remove previous selections in this step
+          step.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+          
+          // Add new selection
+          card.classList.add('selected');
+          appState.selections[stepNumber] = value;
+        }
+        
+        updateProgress();
+        
+        // Check if all steps are completed
+        if (Object.keys(appState.selections).length === appState.totalSteps) {
+          showResults();
+        }
+      }
+
+      function updateStepDisplay() {
+        const steps = document.querySelectorAll('.decision-step');
+        
+        steps.forEach((step, index) => {
+          step.classList.add('active');
+        });
+      }
+
+      function updateProgress() {
+        const progressFill = document.getElementById('progress-fill');
+        const progressText = document.getElementById('progress-text');
+        const completedSteps = Object.keys(appState.selections).length;
+        const percentage = (completedSteps / appState.totalSteps) * 100;
+        
+        progressFill.style.width = percentage + '%';
+        progressText.textContent = `Tamamlanan: ${completedSteps} / ${appState.totalSteps} adım`;
+      }
+
+      // Bike recommendation algorithm
+      function showResults() {
+        const selections = appState.selections;
+        let recommendedBike = '';
+        let reasoning = '';
+        let score = {
+          mountain: 0,
+          road: 0,
+          gravel: 0,
+          city: 0,
+          folding: 0,
+          electric: 0,
+          electricGravel: 0,
+          hybrid: 0
+        };
+        
+        // Terrain scoring (40% weight - primary factor)
+        if (selections[1] === 'asfalt') {
+          score.road += 40;
+          score.hybrid += 20;
+        } else if (selections[1] === 'asfalt-parke') {
+          score.gravel += 25;
+          score.city += 30;
+          score.hybrid += 25;
+        } else if (selections[1] === 'asfalt-toprak') {
+          score.gravel += 35;
+          score.hybrid += 25;
+        } else if (selections[1] === 'asfalt-cakil') {
+          score.gravel += 40;
+        } else if (selections[1] === 'toprak') {
+          score.mountain += 40;
+        } else if (selections[1] === 'dag') {
+          score.mountain += 45;
+        }
+        
+        // Usage purpose scoring (25% weight)
+        if (selections[2] === 'ulasim') {
+          score.city += 25;
+          score.electric += 15;
+          score.hybrid += 20;
+        } else if (selections[2] === 'spor') {
+          score.road += 25;
+          score.hybrid += 20;
+          score.mountain += 15;
+        } else if (selections[2] === 'rekreasyon') {
+          score.hybrid += 25;
+          score.gravel += 20;
+          score.city += 15;
+        } else if (selections[2] === 'yaris') {
+          score.road += 30;
+          score.mountain += 20;
+        } else if (selections[2] === 'tur') {
+          score.gravel += 25;
+          score.electricGravel += 20;
+          score.hybrid += 15;
+        }
+        
+        // Distance scoring (10% weight)
+        if (selections[3] === 'kisa') {
+          score.city += 10;
+          score.folding += 15;
+          score.hybrid += 8;
+        } else if (selections[3] === 'orta') {
+          score.hybrid += 10;
+          score.gravel += 8;
+          score.electric += 5;
+        } else if (selections[3] === 'uzun') {
+          score.road += 10;
+          score.electric += 8;
+          score.electricGravel += 8;
+        } else if (selections[3] === 'cok-uzun') {
+          score.road += 12;
+          score.electricGravel += 10;
+        }
+        
+        // Physical level scoring (10% weight)
+        if (selections[5] === 'atletik') {
+          score.road += 10;
+          score.mountain += 8;
+        } else if (selections[5] === 'orta-fizik') {
+          score.hybrid += 10;
+          score.gravel += 8;
+        } else if (selections[5] === 'baslangic-fizik') {
+          score.city += 10;
+          score.electric += 8;
+          score.hybrid += 6;
+        } else if (selections[5] === 'agir-yapi') {
+          score.mountain += 10;
+          score.electric += 8;
+        }
+        
+        // Experience level scoring (5% weight)
+        if (selections[6] === 'uzman') {
+          score.road += 5;
+          score.mountain += 4;
+        } else if (selections[6] === 'orta-deneyim') {
+          score.hybrid += 5;
+          score.gravel += 4;
+        } else if (selections[6] === 'yeni-baslayan') {
+          score.city += 5;
+          score.hybrid += 4;
+        } else if (selections[6] === 'yasli') {
+          score.electric += 8;
+          score.city += 5;
+        }
+        
+        // Special features (modifiers)
+        if (selections[7] === 'elektrikli') {
+          score.electric += 20;
+          score.electricGravel += 15;
+        } else if (selections[7] === 'konfor') {
+          score.city += 10;
+          score.hybrid += 8;
+        } else if (selections[7] === 'aerodinamik') {
+          score.road += 15;
+        } else if (selections[7] === 'kis') {
+          score.gravel += 10;
+          score.mountain += 8;
+        } else if (selections[7] === 'tasima') {
+          score.gravel += 10;
+          score.city += 8;
+        }
+        
+        // Find highest score
+        let maxScore = 0;
+        let bestBike = '';
+        
+        Object.entries(score).forEach(([bike, points]) => {
+          if (points > maxScore) {
+            maxScore = points;
+            bestBike = bike;
+          }
+        });
+        
+        // Convert to display names and reasoning
+        switch(bestBike) {
+          case 'mountain':
+            recommendedBike = 'Dağ Bisikleti (Mountain Bike)';
+            reasoning = 'Seçimlerinize göre zorlu arazi koşulları ve performans için dağ bisikleti en uygun seçimdir.';
+            break;
+          case 'road':
+            recommendedBike = 'Yol Yarış Bisikleti';
+            reasoning = 'Asfalt yollar ve hız/performans odaklı kullanımınız için yol yarış bisikleti idealdir.';
+            break;
+          case 'gravel':
+            recommendedBike = 'Gravel Bisikleti';
+            reasoning = 'Karışık zemin koşulları ve çok yönlü kullanım için gravel bisikleti mükemmel bir seçimdir.';
+            break;
+          case 'city':
+            recommendedBike = 'Şehir Bisikleti';
+            reasoning = 'Günlük ulaşım ve şehir içi kullanım için konforlu şehir bisikleti en uygun seçenektir.';
+            break;
+          case 'folding':
+            recommendedBike = 'Katlanır Bisiklet';
+            reasoning = 'Taşınabilirlik ve pratiklik ihtiyacınız için katlanır bisiklet ideal çözümdür.';
+            break;
+          case 'electric':
+            recommendedBike = 'Elektrikli Bisiklet';
+            reasoning = 'Motor desteği tercihleriniz ve kullanım şekliniz için elektrikli bisiklet en uygun seçimdir.';
+            break;
+          case 'electricGravel':
+            recommendedBike = 'Elektrikli Gravel Bisikleti';
+            reasoning = 'Uzun mesafe karışık zemin turları ve motor desteği için elektrikli gravel bisikleti idealdir.';
+            break;
+          case 'hybrid':
+            recommendedBike = 'Hibrit Bisiklet';
+            reasoning = 'Çok yönlü kullanım ihtiyacınız için hibrit bisiklet mükemmel bir başlangıç seçeneğidir.';
+            break;
+          default:
+            recommendedBike = 'Hibrit Bisiklet';
+            reasoning = 'Verdiğiniz cevaplara göre çok amaçlı hibrit bisiklet sizin için en uygun seçenek görünüyor.';
+        }
+
+        // Display results
+        const resultsContainer = document.getElementById('results-container');
+        const recommendedBikeElement = document.getElementById('recommended-bike');
+        const selectionSummary = document.getElementById('selection-summary');
+        
+        recommendedBikeElement.innerHTML = `
+          <div class="bike-recommendation">
+            <h3 class="recommended-title">${recommendedBike}</h3>
+            <p class="recommendation-reasoning">${reasoning}</p>
+            <div class="recommendation-details">
+              <h4>🔍 Neden Bu Seçim?</h4>
+              <p>Verdiğiniz yanıtlara göre, ${recommendedBike.toLowerCase()} sizin ihtiyaçlarınıza en uygun bisiklet türüdür.</p>
+            </div>
+          </div>
+        `;
+        
+        // Show selection summary
+        const stepNames = {
+          1: 'Zemin', 2: 'Kullanım', 3: 'Mesafe', 4: 'Bütçe', 
+          5: 'Fiziksel Durum', 6: 'Deneyim', 7: 'Ek Özellik'
+        };
+        
+        let summaryHTML = '';
+        Object.keys(selections).forEach(step => {
+          const stepName = stepNames[step];
+          const selection = selections[step];
+          summaryHTML += `<div class="summary-item"><strong>${stepName}:</strong> ${selection}</div>`;
+        });
+        
+        selectionSummary.innerHTML = summaryHTML;
+        resultsContainer.style.display = 'block';
+        
+        // Scroll to results
+        resultsContainer.scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      function restartDecisionTree() {
+        appState.currentStep = 1;
+        appState.selections = {};
+        
+        // Clear all selections
+        document.querySelectorAll('.option-card.selected').forEach(card => {
+          card.classList.remove('selected');
+        });
+        
+        // Hide results
+        document.getElementById('results-container').style.display = 'none';
+        
+        // Update display
+        updateStepDisplay();
+        updateProgress();
+        
+        // Scroll to decision tree
+        document.getElementById('karar-agaci').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Collapsible functionality
+      function initializeCollapsibles() {
+        const collapsibles = document.querySelectorAll('.collapsible');
+
+        collapsibles.forEach(function (collapsible) {
+          const header = collapsible.querySelector('.collapsible-header');
+          const content = collapsible.querySelector('.collapsible-content');
+
+          function toggleCollapsible() {
+            collapsible.classList.toggle('active');
+            content.classList.toggle('active');
+            
+            // Update ARIA attribute
+            const isExpanded = collapsible.classList.contains('active');
+            header.setAttribute('aria-expanded', isExpanded);
+          }
+
+          header.addEventListener('click', toggleCollapsible);
+          
+          // Keyboard support
+          header.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggleCollapsible();
+            }
+          });
+        });
+      }
+
+      // Search and filter functionality
+      function initializeSearch() {
+        const searchInput = document.getElementById('bike-search');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const bikeCards = document.querySelectorAll('.collapsible[data-category]');
+        
+        // Search functionality
+        if (searchInput) {
+          searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            performSearch(searchTerm);
+          });
+        }
+        
+        // Filter functionality
+        filterButtons.forEach(btn => {
+          btn.addEventListener('click', function() {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            performFilter(this.dataset.filter);
+          });
+        });
+      }
+
+      function performSearch(searchTerm) {
+        const bikeTypeCollapsibles = document.querySelectorAll('#bisiklet-turleri .collapsible[data-category]');
+        
+        bikeTypeCollapsibles.forEach(collapsible => {
+          const text = collapsible.textContent.toLowerCase();
+          const isVisible = text.includes(searchTerm);
+          collapsible.style.display = isVisible ? 'block' : 'none';
+        });
+      }
+
+      function performFilter(filter) {
+        const bikeTypeCollapsibles = document.querySelectorAll('#bisiklet-turleri .collapsible[data-category]');
+        
+        bikeTypeCollapsibles.forEach(collapsible => {
+          const category = collapsible.dataset.category;
+          const isVisible = filter === 'all' || category === filter;
+          collapsible.style.display = isVisible ? 'block' : 'none';
+        });
+      }
+
+      // Scroll to top functionality
+      function initializeScrollToTop() {
+        const scrollBtn = document.getElementById('scroll-to-top');
+        
+        window.addEventListener('scroll', function() {
+          if (window.pageYOffset > 300) {
+            scrollBtn.classList.add('visible');
+          } else {
+            scrollBtn.classList.remove('visible');
+          }
+        });
+        
+        scrollBtn.addEventListener('click', function() {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+
+      // Mobile menu functionality
+      function initializeMobileMenu() {
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', function() {
+          hamburger.classList.toggle('active');
+          navMenu.classList.toggle('active');
+          
+          // Update ARIA attribute
+          const isExpanded = navMenu.classList.contains('active');
+          hamburger.setAttribute('aria-expanded', isExpanded);
+        });
+        
+        // Close menu when clicking on links
+        navMenu.addEventListener('click', function(e) {
+          if (e.target.tagName === 'A') {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // Smooth scrolling for navigation links
+      function initializeSmoothScrolling() {
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              });
+            }
+          });
+        });
+      }
+
+      function showBikeTypes() {
+        document.getElementById('bisiklet-turleri').scrollIntoView({ behavior: 'smooth' });
+        
+        // Open all bike type collapsibles
+        const bikeCollapsibles = document.querySelectorAll('#bisiklet-turleri .collapsible');
+        bikeCollapsibles.forEach(collapsible => {
+          const content = collapsible.querySelector('.collapsible-content');
+          const header = collapsible.querySelector('.collapsible-header');
+          
+          collapsible.classList.add('active');
+          content.classList.add('active');
+          header.setAttribute('aria-expanded', 'true');
+        });
+      }
+    </script>
+  
+</body></html>
